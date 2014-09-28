@@ -27,6 +27,27 @@
         "served_by":"Hover",
         "cost":"5.00"
       }
+    },
+    {"name":"Juan Orozco",
+      "url":"http://juanorozco.com",
+      "git_repo":{
+        "url":"",
+        "git":"https://Guamaso@bitbucket.org/Guamaso/juanorozco.git"
+      },
+      "webhost":{
+        "name":"Github Pages",
+        "url":"http://pages.github.com"
+      },
+      "domain_registrar":{
+        "name":"Hover",
+        "url": "https://hover.com",
+        "expire_date": "03/22/2015",
+        "fee":"15.00"
+      },
+      "cms":{
+        "name":"Wintersmith",
+        "version":"-1"
+      }
     }
   ]
 }
