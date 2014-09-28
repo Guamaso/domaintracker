@@ -1,58 +1,60 @@
 <ul>
   {{#sites}}
   <li class="well">
-    <h2>{{name}}</h2>
-    <a href="{{url}}">{{url}}</a>{{#if git_repo}} || <a href="{{git_repo.url}}">Repo</a>{{/if}}
+    <h2 class="pure-button pure-button-primary toggle-site-visibility" title="Click to toggle.">{{name}}</h2>
+    <div class="item-content">
+      <a href="{{url}}">{{url}}</a>{{#if git_repo}} || <a href="{{git_repo.url}}">Repo</a>{{/if}}
 
-    {{#if webhost}}
-    <h3>Web Host</h3>
-    <dl>
-      <dt>Host</dt>
-      <dd><a href="{{webhost.url}}">{{webhost.name}}</a></dd>
+      {{#if webhost}}
+      <h3>Web Host</h3>
+      <dl>
+        <dt>Host</dt>
+        <dd><a href="{{webhost.url}}">{{webhost.name}}</a></dd>
 
-      <dt>Server Name</dt>
-      <dd>{{webhost.server_name}}</dd>
+        <dt>Server Name</dt>
+        <dd>{{webhost.server_name}}</dd>
 
-      <dt>Project Path</dt>
-      <dd>{{webhost.parent_id}}/{{webhost.project_id}}</dd>
-    </dl>
-    {{/if}}
-    {{#if domain_registrar}}
-    <h3>Domain</h3>
-    <dl>
-      <dt>Registrar</dt>
-      <dd><a href="{{domain_registrar.url}}">{{domain_registrar.name}}</a></dd>
+        <dt>Project Path</dt>
+        <dd>{{webhost.parent_id}}/{{webhost.project_id}}</dd>
+      </dl>
+      {{/if}}
+      {{#if domain_registrar}}
+      <h3>Domain</h3>
+      <dl>
+        <dt>Registrar</dt>
+        <dd><a href="{{domain_registrar.url}}">{{domain_registrar.name}}</a></dd>
 
-      <dt>Renew Date</dt>
-      <dd>{{domain_registrar.expire_date}}</dd>
+        <dt>Renew Date</dt>
+        <dd>{{domain_registrar.expire_date}}</dd>
 
-      <dt>Renew Cost</dt>
-      <dd>${{domain_registrar.fee}}</dd>
-    </dl>
-    {{/if}}
-    {{#if cms}}
-    <h3>Content</h3>
-    <dl>
-      <dt>Software</dt>
-      <dd>{{cms.name}}</dd>
+        <dt>Renew Cost</dt>
+        <dd>${{domain_registrar.fee}}</dd>
+      </dl>
+      {{/if}}
+      {{#if cms}}
+      <h3>Content</h3>
+      <dl>
+        <dt>Software</dt>
+        <dd>{{cms.name}}</dd>
 
-      <dt>Version</dt>
-      <dd>{{cms.version}}</dd>
+        <dt>Version</dt>
+        <dd>{{cms.version}}</dd>
 
-      <dt>Cost</dt>
-      <dd>{{#if cms.cost}}${{cms.cost}}{{else}}N/A{{/if}}</dd>
-    </dl>
-    {{/if}}
-    {{#if email}}
-    <h3>E-Mail</h3>
-    <dl>
-      <dt>Served By</dt>
-      <dd>{{email.served_by}}</dd>
+        <dt>Cost</dt>
+        <dd>{{#if cms.cost}}${{cms.cost}}{{else}}N/A{{/if}}</dd>
+      </dl>
+      {{/if}}
+      {{#if email}}
+      <h3>E-Mail</h3>
+      <dl>
+        <dt>Served By</dt>
+        <dd>{{email.served_by}}</dd>
 
-      <dt>Cost</dt>
-      <dd>{{#if email.cost}}${{email.cost}}{{else}}N/A{{/if}}</dd>
-    </dl>
-    {{/if}}
+        <dt>Cost</dt>
+        <dd>{{#if email.cost}}${{email.cost}}{{else}}N/A{{/if}}</dd>
+      </dl>
+      {{/if}}
+    </div>
   </li>
   {{/sites}}
 </ul>
