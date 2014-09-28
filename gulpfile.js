@@ -5,40 +5,34 @@ var livereload = require("gulp-livereload");
 var clean = require("gulp-clean");
 var es = require('event-stream');
 var concat = require('gulp-concat');
-//var bower = require("bower-files");
 var bower = require('main-bower-files');
 
-var EXPRESS_PORT = 4000;
-var EXPRESS_ROOT = __dirname + "/dist";
+var SERVER_PORT = 4000;
+var SERVER_ROOT = __dirname + "/dist";
 var LIVERELOAD_PORT = 35729;
 var lr_script = "<script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':"+LIVERELOAD_PORT +"/livereload.js?snipver=1\"></' + 'script>')</script>";
 
-gulp.task("bower", function()
-{
-  return gulp.src(bower.js);
-  //.pipe();
-});
-
-gulp.task("express",function()
-{
+gulp.task("server",function(){
   var express = require('express');
-  var app = express();
-  app.use(require('connect-livereload')());
-  app.use(express.static( EXPRESS_ROOT));
-  app.listen(EXPRESS_PORT);
+  var server = express();
+  server.use(require('connect-livereload')() );
+  server.use(express.static( SERVER_ROOT ) );
+  return server.listen(SERVER_PORT);
 });
 
-gulp.task("live",["express"],function()
+gulp.task("live",['server'],function()
 {
-  gulp.watch( "./app/**/*.*", ["build"]);
+  server = livereload.listen(LIVERELOAD_PORT, {silent:false});
+  var app_change = gulp.watch( "app/**/*.*", ["build"]);
 
-  var server = livereload();
 
-  return gulp.watch(EXPRESS_ROOT + '/**/*', function(evt){
-    console.log("reload");
-    console.log(evt);
-    server.changed(evt.path);
+  var server_watch = gulp.watch(SERVER_ROOT + '/index.html');
+
+  server_watch.on('change', function(evt){
+    gutil.log("Build updated.");
+    livereload.changed(evt.path, server);
   });
+  return server_watch;
 });
 
 gulp.task('cleanDist', function(){
@@ -49,18 +43,36 @@ gulp.task('cleanDist', function(){
 gulp.task('concatFiles',['cleanDist'], function(){
 
   var appJS = gulp.src('./app/scripts/*.js')
-    .pipe(concat('app.js'))
+    .pipe(concat('websiteapp.js'))
     .pipe(gulp.dest('./dist'));
 
-  return bowerFiles = gulp.src(bower())
+  var templates = gulp.src('./app/scripts/*.mustache')
+    .pipe(gulp.dest('./dist'));
+
+  var models = gulp.src('./app/scripts/*.json')
+    .pipe(gulp.dest('./dist'));
+
+  var bowerCSS = gulp.src(bower({filter:function(a){
+      if (a.indexOf('.js')===-1){
+        return a
+      }
+    }}))
+    .pipe(concat('deps.css'))
+    .pipe(gulp.dest('./dist'));
+
+  return bowerFiles = gulp.src(bower({filter:function(a){
+      if (a.indexOf('.css')===-1){
+        return a
+      }
+    }}))
     .pipe(concat('deps.js'))
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('build', ['cleanDist','concatFiles'],function () {
-  console.log("FILE CHANGE");
+  gutil.log("Building Application");
 
   return gulp.src('./app/index.html')
-    .pipe(inject(gulp.src('./dist/*.js'),{ignorePath:'/dist/'}))
+    .pipe(inject(gulp.src(['./dist/*.js','./dist/*.css']),{ignorePath:'/dist/'}))
     .pipe(gulp.dest('./dist'));
 });
