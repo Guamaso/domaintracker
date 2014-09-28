@@ -2,11 +2,16 @@
   "data":[
     {"name":"Cherry Willow",
       "url":"http://cherrywillow.com",
-      "git_repo":"https://Guamaso@bitbucket.org/Guamaso/cherry-willow.git",
+      "git_repo":{
+        "url":"",
+        "git":"https://Guamaso@bitbucket.org/Guamaso/cherry-willow.git"
+      },
       "webhost":{
         "name":"Digital Ocean",
         "url":"http://digitalocean.com",
-        "server_name":"EGS_WEB"
+        "server_name":"EGS_WEB",
+        "project_id":"CW",
+        "parent_id":"SW"
       },
       "domain_registrar":{
         "name":"Hover",
@@ -16,7 +21,7 @@
       },
       "cms":{
         "name":"Ghost",
-        "version":5.0
+        "version":"5.0"
       },
       "email":{
         "served_by":"Hover",
