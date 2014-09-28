@@ -6,6 +6,7 @@ var clean = require("gulp-clean");
 var es = require('event-stream');
 var concat = require('gulp-concat');
 var bower = require('main-bower-files');
+var uglify = require('gulp-uglify');
 
 var SERVER_PORT = 4000;
 var SERVER_ROOT = __dirname + "/dist";
@@ -25,7 +26,6 @@ gulp.task("live",['server'],function()
   server = livereload.listen(LIVERELOAD_PORT, {silent:false});
   var app_change = gulp.watch( "app/**/*.*", ["build"]);
 
-
   var server_watch = gulp.watch(SERVER_ROOT + '/index.html');
 
   server_watch.on('change', function(evt){
@@ -44,6 +44,10 @@ gulp.task('concatFiles',['cleanDist'], function(){
 
   var appJS = gulp.src('./app/scripts/*.js')
     .pipe(concat('websiteapp.js'))
+    .pipe(gulp.dest('./dist'));
+
+  var appJS = gulp.src('./app/styles/*.css')
+    .pipe(concat('websiteapp.css'))
     .pipe(gulp.dest('./dist'));
 
   var templates = gulp.src('./app/scripts/*.mustache')
@@ -66,6 +70,7 @@ gulp.task('concatFiles',['cleanDist'], function(){
       }
     }}))
     .pipe(concat('deps.js'))
+    .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 });
 
