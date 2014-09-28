@@ -1,5 +1,27 @@
 {
-  websites:[
-    {name:'Cherry Willow', url:'http://cherrywillow.com'}
+  "data":[
+    {"name":"Cherry Willow",
+      "url":"http://cherrywillow.com",
+      "git_repo":"https://Guamaso@bitbucket.org/Guamaso/cherry-willow.git",
+      "webhost":{
+        "name":"Digital Ocean",
+        "url":"http://digitalocean.com",
+        "server_name":"EGS_WEB"
+      },
+      "domain_registrar":{
+        "name":"Hover",
+        "url": "https://hover.com",
+        "expire_date": "09/13/2015",
+        "fee":"15.00"
+      },
+      "cms":{
+        "name":"Ghost",
+        "version":5.0
+      },
+      "email":{
+        "served_by":"Hover",
+        "cost":"5.00"
+      }
+    }
   ]
 }
