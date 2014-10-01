@@ -2,7 +2,7 @@ var app = function(){
 
   //load json
   var Websites = can.Model.extend({
-      findAll: 'GET /websites.json'
+      findAll: 'GET websites.json'
     },{});
 
   var viewModel = new can.Map({
