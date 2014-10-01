@@ -1,7 +1,7 @@
 <ul>
   {{#sites}}
   <li class="well">
-    <h2 class="pure-button pure-button-primary toggle-site-visibility" title="Click to toggle.">{{name}}</h2>
+    <h2 class="toggle-site-visibility" title="Click to toggle.">{{name}}</h2>
     <div class="item-content">
       <a href="{{url}}">{{url}}</a>{{#if git_repo}} || <a href="{{git_repo.url}}">Repo</a>{{/if}}
 

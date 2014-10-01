@@ -14,14 +14,14 @@ var app = function(){
       }else{
         $el.parent('li').find('.item-content').show();
       }
-    });
+    }
+  });
 
   //main component
   var websiteList = can.Component.extend({
     tag:'websites-list',
     template:can.view('website-list'),
-    scope: viewModel
-    },
+    scope: viewModel,
     events:{
       inserted:function(){
         var scope = this.scope;
