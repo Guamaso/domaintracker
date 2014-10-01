@@ -1,31 +1,27 @@
 {
   "data":[
-    {"name":"Cherry Willow",
-      "url":"http://cherrywillow.com",
+    {"name":"End Game Studio",
+      "url":"http://endgamestudio.com",
       "git_repo":{
         "url":"",
-        "git":"https://Guamaso@bitbucket.org/Guamaso/cherry-willow.git"
+        "git":"https://github.com/Guamaso/endgamestudio"
       },
       "webhost":{
         "name":"Digital Ocean",
         "url":"http://digitalocean.com",
-        "server_name":"EGS_WEB",
-        "project_id":"CW",
-        "parent_id":"SW"
+        "server_name":"Webserver",
+        "project_id":"AA",
+        "parent_id":""
       },
       "domain_registrar":{
         "name":"Hover",
-        "url": "https://hover.com",
-        "expire_date": "09/13/2015",
+        "url": "https://1and1.com",
+        "expire_date": "01/11/2017",
         "fee":"15.00"
       },
       "cms":{
         "name":"Ghost",
-        "version":"5.0"
-      },
-      "email":{
-        "served_by":"Hover",
-        "cost":"5.00"
+        "version":"4.0"
       }
     },
     {"name":"Juan Orozco",
@@ -40,8 +36,8 @@
       },
       "domain_registrar":{
         "name":"Hover",
-        "url": "https://hover.com",
-        "expire_date": "03/22/2015",
+        "url": "https://1and1.com",
+        "expire_date": "03/01/2016",
         "fee":"15.00"
       },
       "cms":{
