@@ -21,7 +21,7 @@ gulp.task("server",function(){
   return server.listen(SERVER_PORT);
 });
 
-gulp.task("live",['server'],function()
+gulp.task("live",['build','server'],function()
 {
   server = livereload.listen(LIVERELOAD_PORT, {silent:false});
   var app_change = gulp.watch( "app/**/*.*", ["build"]);

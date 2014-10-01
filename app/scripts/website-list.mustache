@@ -13,9 +13,10 @@
 
         <dt>Server Name</dt>
         <dd>{{webhost.server_name}}</dd>
-
+        {{#if webhost.project_id}}
         <dt>Project Path</dt>
         <dd>{{webhost.parent_id}}/{{webhost.project_id}}</dd>
+        {{/if}}
       </dl>
       {{/if}}
       {{#if domain_registrar}}

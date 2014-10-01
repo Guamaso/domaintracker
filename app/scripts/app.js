@@ -1,24 +1,26 @@
 var app = function(){
+
   //load json
   var Websites = can.Model.extend({
       findAll: 'GET /websites.json'
     },{});
-window.websiteModel = Websites;
-  //app component
+
+  var viewModel = new can.Map({
+    sites: new can.List([]),
+    toggle_visibility:function($el){
+      var state = $el.parent('li').find('.item-content').is(":visible");
+      if (state){
+        $el.parent('li').find('.item-content').hide();
+      }else{
+        $el.parent('li').find('.item-content').show();
+      }
+    });
+
+  //main component
   var websiteList = can.Component.extend({
     tag:'websites-list',
     template:can.view('website-list'),
-    scope:{
-      sites: new can.List([]),
-      toggle_visibility:function($el){
-        console.log($el);
-        var state = $el.parent('li').find('.item-content').is(":visible");
-        if (state){
-          $el.parent('li').find('.item-content').hide();
-        }else{
-          $el.parent('li').find('.item-content').show();
-        }
-      }
+    scope: viewModel
     },
     events:{
       inserted:function(){
